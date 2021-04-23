@@ -25,8 +25,8 @@ newButton.addEventListener('click', () => {
     let pokeDef = prompt('Pokemon Defense Points')
     let newPokemon = new Pokemon(
         pokeName,
-        ['eat', 'sleep'],
-        ['study', 'game'],
+        ['run', 'ravish'],
+        ['undefined'],
         [
             {type:{
                 name: pokeType,
