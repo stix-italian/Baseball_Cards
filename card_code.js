@@ -4,13 +4,15 @@ const fetchButton = document.querySelector('#fetchSelectedPokemon')
 const newButton = document.querySelector('#newPokemon')
 
 class Pokemon {
-    constructor(name, height, weight, abilities, moves) {
+    constructor(name, height, weight, abilities, moves, type, stats) {
         this.id = 900
         this.name = name
         this.height = height
         this.weight = weight
         this.abilities = abilities
         this.moves = moves
+        this.type = type
+        this.stats = stats
     }
 }
 
@@ -50,7 +52,7 @@ async function getAPIData(url) {
 }
 
 function loadPage() {
-    getAPIData(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=748`).then(
+    getAPIData(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=0`).then(
         async (data) => {
             for (const singlePokemon of data.results) {
                 await getAPIData(singlePokemon.url).then(
@@ -81,7 +83,7 @@ function populateCardFront(pokemon) {
     let pokeFront = document.createElement('div')
     pokeFront.className = 'card__face card__face--front'
     let frontLabel = document.createElement('p')
-    frontLabel.textContent = pokemon.id + ' ' + pokemon.name
+    frontLabel.textContent = pokemon.name
     let frontImage = document.createElement('img')
     frontImage.src = getImageFileName(pokemon)
     
@@ -94,7 +96,7 @@ function populateCardBack(pokemon) {
     let pokeBack = document.createElement('div')
     pokeBack.className = 'card__face card__face--back'
     let backLabel = document.createElement('p')
-    backLabel.textContent = `Moves: ${pokemon.moves.length}`
+    backLabel.innerText = 'ID: ' + pokemon.id + '\n'+ `Moves: ${pokemon.moves.length}` +'\n Height: '+ pokemon.height
     pokeBack.appendChild(backLabel)
     return pokeBack
 }
