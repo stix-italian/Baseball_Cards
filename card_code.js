@@ -27,7 +27,12 @@ newButton.addEventListener('click', () => {
         pokeName,
         ['eat', 'sleep'],
         ['study', 'game'],
-        pokeType,
+        [
+            {type:{
+                name: pokeType,
+                }
+            }
+        ],
         [
             {
                 base_stat: pokeHP,
